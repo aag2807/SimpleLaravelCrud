@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 
 use  App\Models\Post;
+use DB;
 
 class PostController extends Controller
 {
@@ -15,7 +16,9 @@ class PostController extends Controller
      */
     public function index()
     {
-        $posts = Post::all();
+        // $posts = Post::orderBy('id', 'desc')->get();
+        $posts = DB::select('select * from posts');
+
         return view("posts.index") -> with('posts', $posts);
     }
 
@@ -26,7 +29,8 @@ class PostController extends Controller
      */
     public function create()
     {
-        //
+        
+        return view('post.create');
     }
 
     /**
